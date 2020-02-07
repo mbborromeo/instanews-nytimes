@@ -1,0 +1,82 @@
+/**
+ * Define Partials 
+ */
+@import 'normalize'; /* CSS Reset */
+@import 'variables'; 
+@import 'mixins';
+
+/* use border-box for everything */
+* { 
+	box-sizing: border-box; 
+}
+
+html {       
+    font-size: 100%; 
+}
+
+body {
+    font-family: sans-serif;
+}
+
+#stories {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            margin: 0;
+            padding: 0;
+
+            flex: 0 1 100%;
+            max-width: 100%;
+
+            @include tablet {
+                flex: 0 1 50%;
+                max-width: 50%;
+            }
+
+            // @include desktop { OR
+        	@media screen and (min-width: $desktop-width) {
+                flex: 0 1 25%;
+                max-width: 25%;
+            }
+        }
+    }    
+
+    .article {
+        display: block;
+        width: 100%;        
+        height: 50vh;
+        background-position: 50%;
+        background-size: cover;
+    }
+}
+
+/* 
+#stories {
+    ul { 
+        li {
+            flex: 0 1 100%;
+            max-width: 100%;
+
+            @media screen and (min-width: $desktop-width) {
+                flex: 0 1 25%;
+                max-width: 25%;
+            }
+        }
+    }
+}
+
+is equivalent to 
+
+@media screen and (min-width: $desktop-width) {
+    #stories ul li {
+        flex: 0 1 25%;
+        max-width: 25%;
+    }
+}
+*/

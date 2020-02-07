@@ -1,0 +1,12 @@
+/* Used by responsive layout */
+@mixin tablet {
+  @media (min-width: $tablet-width) {
+    @content; // inserts content from where this is called      
+  }
+}
+
+@mixin desktop {  
+  @media (min-width: $desktop-width) {
+    @content; // inserts content from where this is called      
+  }
+}
