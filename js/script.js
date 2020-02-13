@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // References
   const stories = document.getElementById('stories');  
   const dropdown = document.getElementById('category');
-  const header = document.getElementsByTagName('header')[0];
+  const header = document.getElementsByTagName('header')[0];  
 
   // Loading graphic
   const loader = document.createElement('img');
@@ -17,34 +17,31 @@ document.addEventListener("DOMContentLoaded", function(){
   stories.append(loader);
 
   // Functions
-  function generateThumbs(number, array){
+  function generateThumbs(array, number){
     // create new list
     const ul = document.createElement('ul');
 
     for( let i=0; i < number; i++ ){
-      // TO DO: only display articles that have an image, use filter...
-      if(array[i].multimedia[0].url){
-        const li = document.createElement('li');
+      const li = document.createElement('li');
 
-        const a = document.createElement('a');
-        a.setAttribute('target', '_blank');
-        a.setAttribute('href', array[i].url);
+      const a = document.createElement('a');
+      a.setAttribute('target', '_blank');
+      a.setAttribute('href', array[i].url);
 
-        const figure = document.createElement('figure');
+      const figure = document.createElement('figure');
 
-        const image = document.createElement('img');
-        image.setAttribute('src', array[i].multimedia[0].url);
+      const image = document.createElement('img');
+      image.setAttribute('src', array[i].multimedia[0].url);
 
-        const figcaption = document.createElement('figcaption');
-        figcaption.innerText = array[i].abstract; // can add title as well
+      const figcaption = document.createElement('figcaption');
+      figcaption.innerText = array[i].abstract; // can add title as well
 
-        figure.append(image);
-        figure.append(figcaption);
+      figure.append(image);
+      figure.append(figcaption);
 
-        a.append(figure);
-        li.append(a);
-        ul.append(li);
-      }      
+      a.append(figure);
+      li.append(a);
+      ul.append(li);
     }
 
     stories.append(ul);
@@ -78,14 +75,21 @@ document.addEventListener("DOMContentLoaded", function(){
       // better to put key in external file
     })
     .done( function(data){
-      if( data.results.length > 0 ){      
+      if( data.results.length > 0 ){    
+        //console.log(data);
+
+        // filter out articles that don't have images    
+        //const articleWithImagesArray = []; does not work
+        //let articleWithImagesArray = []; works
+        const articleWithImagesArray = data.results.filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url );
+
         // hide loading loop image
         loader.setAttribute('style', 'display:none');
         
-        if( data.results.length > LIMIT ){
-          generateThumbs( LIMIT, data.results );
+        if( articleWithImagesArray.length > LIMIT ){
+          generateThumbs( articleWithImagesArray, LIMIT );
         } else {
-          generateThumbs( data.results.length, data.results );
+          generateThumbs( articleWithImagesArray, articleWithImagesArray.length );
         }     
       }      
     })
