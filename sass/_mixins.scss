@@ -1,7 +1,7 @@
 /* Used by responsive layout */
 @mixin tablet {
   @media (min-width: $tablet-width) {
-    @content; // inserts content from where this is called, and w     
+    @content; // inserts content from where this is called     
   }
 }
 

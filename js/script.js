@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function(){
         const figure = document.createElement('figure');
 
         const image = document.createElement('img');
-        image.setAttribute('class', 'thumb');
         image.setAttribute('src', array[i].multimedia[0].url);
 
         const figcaption = document.createElement('figcaption');
