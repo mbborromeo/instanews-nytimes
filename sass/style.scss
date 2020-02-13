@@ -62,9 +62,12 @@ header {
             }
         }
 
-        @include tablet {
-            padding-left: 2 * $base-spacing-unit;
+        @include tablet {            
             flex-direction: row;
+        }
+
+        @include desktop {
+            padding-left: 2 * $base-spacing-unit;
         }
     }
 
