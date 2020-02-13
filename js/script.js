@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // References
   const stories = document.getElementById('stories');  
   const dropdown = document.getElementById('category');
+  const header = document.getElementsByTagName('header')[0];
 
   // Loading graphic
   const loader = document.createElement('img');
@@ -55,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function(){
     // get value that it changed to
     // $selectedCategory = $(this).children('option:selected').val(); // .text() // $(this).val()
     const selectedCategory = this.value; // event.srcElement.value
+
+    // Set height for header and stories
+    header.setAttribute('class', 'shrink');
+    stories.setAttribute('class', 'expand');
 
     // show loading graphic
     loader.setAttribute('style', 'display:block');
