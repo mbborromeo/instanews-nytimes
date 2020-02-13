@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // Set height for header and stories
     header.setAttribute('class', 'shrink');
-    stories.setAttribute('class', 'expand');
 
     // show loading graphic
     loader.setAttribute('style', 'display:block');
