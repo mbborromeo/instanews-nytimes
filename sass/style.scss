@@ -51,8 +51,12 @@ header {
                 flex-direction: column;
                 justify-content: center;
                 padding-bottom: $base-spacing-unit;
-                
+
                 @include tablet {
+                    padding-left: 2 * $base-spacing-unit;
+                }
+                
+                @include desktop {
                     padding-left: 5 * $base-spacing-unit;
                 }
             }
@@ -64,6 +68,11 @@ header {
         }
     }
 
+    #logo {
+        width: $logo-width-large;
+        height: auto;
+    }
+
     &.shrink {
         min-height: 10%;
 
@@ -72,7 +81,13 @@ header {
 
             @include tablet {
                 flex-direction: row;
-            }
+                
+                span {
+                    &.right {
+                        padding-left: 5 * $base-spacing-unit;
+                    }
+                } 
+            }           
         }
 
         #logo {
@@ -104,21 +119,8 @@ footer {
     }
 }
 
-#logo {
-    width: $logo-width-large;
-    height: auto;
-
-    @include tablet {
-        width: $logo-width-medium;
-    }
-
-    @include desktop {
-        width: $logo-width-large; 
-    }
-}
-
 #loader {
-    display: flex; /* block */
+    display: flex;
     width: 50px;
     height: auto;
     margin: 0 auto;
