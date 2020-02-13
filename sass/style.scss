@@ -118,8 +118,8 @@ footer {
 }
 
 #loader {
-    display: block;
-    width: 40px;
+    display: flex; /* block */
+    width: 50px;
     height: auto;
     margin: 0 auto;
 }
@@ -130,13 +130,10 @@ footer {
 
     &.expand {
         min-height: 80%;
-        display: block;
+        /* display: block; */
+        display: flex;
+        align-items: center;
     }
-
-    /* To centre the loading graphic
-    display: flex;
-    align-items: center;
-    */
 
     ul {
         margin: 0;
