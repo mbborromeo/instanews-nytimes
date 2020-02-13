@@ -18,25 +18,36 @@ document.addEventListener("DOMContentLoaded", function(){
   // Functions
   function generateThumbs(number, array){
     // create new list
-    const list = document.createElement('ul');
+    const ul = document.createElement('ul');
 
     for( let i=0; i < number; i++ ){
       // TO DO: only display articles that have an image, use filter...
       if(array[i].multimedia[0].url){
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.setAttribute('target', '_blank');
-        link.setAttribute('href', array[i].url);
-        const thumb = document.createElement('div');
-        thumb.setAttribute('class', 'thumb');
-        thumb.setAttribute('style', `background-image:url( ${ array[i].multimedia[0].url } )`);
-        link.append(thumb);
-        item.append(link);
-        list.append(item);
+        const li = document.createElement('li');
+
+        const a = document.createElement('a');
+        a.setAttribute('target', '_blank');
+        a.setAttribute('href', array[i].url);
+
+        const figure = document.createElement('figure');
+
+        const image = document.createElement('img');
+        image.setAttribute('class', 'thumb');
+        image.setAttribute('src', array[i].multimedia[0].url);
+
+        const figcaption = document.createElement('figcaption');
+        figcaption.innerText = array[i].abstract; // can add title as well
+
+        figure.append(image);
+        figure.append(figcaption);
+
+        a.append(figure);
+        li.append(a);
+        ul.append(li);
       }      
     }
 
-    stories.append(list);
+    stories.append(ul);
   }
 
   
@@ -51,9 +62,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // Hide previous list before deleting it
     if( document.querySelector('ul') ) {
-      let existingList = document.querySelector('ul');
-      existingList.setAttribute('display', 'none');
-      existingList.parentNode.removeChild(existingList);
+      let existingUL = document.querySelector('ul');
+      existingUL.setAttribute('display', 'none');
+      existingUL.parentNode.removeChild(existingUL);
     }
     
     // using jQuery ajax method
