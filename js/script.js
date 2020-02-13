@@ -78,8 +78,6 @@ document.addEventListener("DOMContentLoaded", function(){
       // better to put key in external file
     })
     .done( function(data){
-      console.log(data);
-
       if( data.results.length > 0 ){      
         // hide loading loop image
         loader.setAttribute('style', 'display:none');
@@ -90,6 +88,9 @@ document.addEventListener("DOMContentLoaded", function(){
           generateThumbs( data.results.length, data.results );
         }     
       }      
+    })
+    .fail( function() {
+      alert('error with API call');
     });
   });
   
