@@ -22,11 +22,20 @@ body {
 
 header {
     min-height: 10%;
+    padding-left: 2 * $base-spacing-unit;
 }
 
 footer {
     min-height: 10%;
     color: $medium-grey;
+    padding-top: 2 * $base-spacing-unit;
+    padding-left: 0;
+    text-align: center;
+    
+    @include desktop {
+        padding-left: 2 * $base-spacing-unit;
+        text-align: left;
+    }
 }
 
 #logo {
