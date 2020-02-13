@@ -22,10 +22,72 @@ body {
 
 header {
     min-height: 90%; /* 10% */
-    padding-left: 2 * $base-spacing-unit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;  
+    
+    padding-top: $base-spacing-unit;
+    padding-bottom: $base-spacing-unit;  
+
+    #header-wrapper {
+        display: flex;     
+        flex-direction: column;
+        align-items: center;
+
+        label {
+            display: block;
+            padding-bottom: 0.5 * $base-spacing-unit;
+        }
+
+        span {
+
+            &.left {
+                padding-bottom: $base-spacing-unit;
+            }
+
+            &.right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-bottom: $base-spacing-unit;
+                
+                @include tablet {
+                    padding-left: 5 * $base-spacing-unit;
+                }
+            }
+        }
+
+        @include tablet {
+            padding-left: 2 * $base-spacing-unit;
+            flex-direction: row;
+        }
+    }
 
     &.shrink {
         min-height: 10%;
+
+        #header-wrapper {
+            flex-direction: column;
+
+            @include tablet {
+                flex-direction: row;
+            }
+        }
+
+        #logo {
+            width: $logo-width-medium;
+            padding-top: $base-spacing-unit;
+
+            @include tablet {
+                width: $logo-width-small;
+                padding-top: 0;
+            }
+        }
+    }    
+
+    @include desktop {
+        justify-content: left;
     }
 }
 
@@ -43,9 +105,16 @@ footer {
 }
 
 #logo {
-    width: 80px;
+    width: $logo-width-large;
     height: auto;
-    border: 1px solid red;
+
+    @include tablet {
+        width: $logo-width-medium;
+    }
+
+    @include desktop {
+        width: $logo-width-large; 
+    }
 }
 
 #loader {
