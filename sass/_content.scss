@@ -28,27 +28,22 @@
       padding: 0;
       list-style: none;
 
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: auto;
+
+      /* Grid responsive breakpoints */
+      @include tablet {
+        grid-template-columns: auto auto auto;
+      }
+
+      @include desktop {
+        grid-template-columns: auto auto auto auto;
+      }
 
       li {
           margin: 0;
           padding: 0;
-          overflow: hidden;
-
-          flex: 0 1 100%;
-          max-width: 100%;
-
-          @include tablet {
-              flex: 0 1 33.33%;
-              max-width: 33.33%;
-          }
-
-          // @include desktop { OR
-          @media screen and (min-width: $desktop-width) {
-              flex: 0 1 25%;
-              max-width: 25%;
-          }
+          overflow: hidden;          
 
           figure {
               position: relative;
@@ -92,34 +87,4 @@
       }
   }    
 }
-
-/* 
-#stories {
-  ul { 
-      li {
-          flex: 0 1 100%;
-          max-width: 100%;
-
-          @media screen and (min-width: $desktop-width) {
-              flex: 0 1 25%;
-              max-width: 25%;
-          }
-      }
-  }
-}
-
-is equivalent to 
-
-#stories ul li {
-  flex: 0 1 100%;
-  max-width: 100%;
-}
-
-@media screen and (min-width: $desktop-width) {
-  #stories ul li {
-      flex: 0 1 25%;
-      max-width: 25%;
-  }
-}
-*/
 
