@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // Proceed only if there are any results
       if( data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
-        const articleWithImagesArray = data.results  // const articleWithImagesArray = [] does not work
+        const articlesWithImagesArray = data.results  // const articlesWithImagesArray = [] does not work
           .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
           // .filter( function(item) { return (item.multimedia && item.multimedia.length && item.multimedia[0].url); } )
           // .filter( function(item) { 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
           // })
           .slice(0, LIMIT);   
         
-        buildThumbnails( articleWithImagesArray );
+        buildThumbnails( articlesWithImagesArray );
       } else {
         stories.innerText = 'No articles returned for category ' + selectedCategory;
       }
