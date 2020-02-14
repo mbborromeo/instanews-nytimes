@@ -8,7 +8,7 @@ npm install
 gulp
 
 # Development steps/process
-0. Read & understand the Project 3 Requirements (https://red-wdp.herokuapp.com/project/project-03/).
+0. Read & understand the Project Requirements (https://red-wdp.herokuapp.com/project/project-03/).
 1. Set up project in NPM and create package.json file.
 2. Set up Git source management including .gitignore and README.md files.
 3. Install Gulp so SASS can compile.
