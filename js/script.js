@@ -11,20 +11,21 @@ document.addEventListener('DOMContentLoaded', function(){
   const loader = document.getElementById('loader');  
 
   // Function Declarations
-  function generateThumbs(array){
+  function buildThumbnails(array){
     const ul = document.createElement('ul');
 
     for( let i=0; i < array.length; i++ ){
       const li = document.createElement('li');
 
       const a = document.createElement('a');
+      a.setAttribute('href', array[i].url);      
       a.setAttribute('target', '_blank');
-      a.setAttribute('href', array[i].url);
 
       const figure = document.createElement('figure');
 
       const image = document.createElement('img');
       image.setAttribute('src', array[i].multimedia[0].url);
+      image.setAttribute('alt', 'Image '+ i);
 
       const figcaption = document.createElement('figcaption');      
 
@@ -42,6 +43,10 @@ document.addEventListener('DOMContentLoaded', function(){
       ul.append(li);
     }
 
+    // hide loading loop image
+    loader.setAttribute('style', 'display:none');
+
+    // show dynamically generated ul
     stories.append(ul);
   }
   
@@ -71,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
+      console.log(data)
       // Proceed only if there are any results
       if( data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
@@ -85,11 +91,8 @@ document.addEventListener('DOMContentLoaded', function(){
           //   }
           // })
           .slice(0, LIMIT);   
-
-        // hide loading loop image
-        loader.setAttribute('style', 'display:none');
         
-        generateThumbs( articleWithImagesArray );
+        buildThumbnails( articleWithImagesArray );
       } else {
         stories.innerText = 'No articles returned for category ' + selectedCategory;
       }
