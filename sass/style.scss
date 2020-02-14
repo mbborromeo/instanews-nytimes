@@ -24,6 +24,10 @@ body {
     font-family: 'OpenSansLight', sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 header {
     min-height: 90%;
     display: flex;
