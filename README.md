@@ -10,10 +10,10 @@ Mobile-first responsive website calling NY Times API to retrieve latest news art
 - Gulp
 - NPM 
 
-# To install
+# Installation instructions from command line
 npm install
 
-# To run on your localhost
+# To run on your localhost (http://localhost:3000/) from command line
 gulp
 
 # Development steps/process
