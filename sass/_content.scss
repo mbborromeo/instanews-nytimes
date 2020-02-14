@@ -14,7 +14,8 @@
 
   &.expand {
       min-height: 80%;        
-      display: flex;
+      /* flex used to vertically centre the loading graphic */
+      display: flex; 
       align-items: center;
       justify-content: center;
   }
