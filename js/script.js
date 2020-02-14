@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
     })
     .done( function(data){
       if( data.results.length > 0 ){    
-        console.log(data);
+        // console.log(data);
 
         // filter out articles that don't have images    
         //const articleWithImagesArray = []; does not work
