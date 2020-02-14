@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function(){
       // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
-      console.log(data)
       // Proceed only if there are any results
       if( data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
