@@ -26,11 +26,11 @@ gulp
 6. Implement mobile-first Responsive Web Design techniques using CSS/SASS Media Queries, and pay attention to breakpoints decided in Mockup Design provided in project brief/requirements
 7. Implement jQuery AJAX call to NY Times API to pull actual content
 8. Use Javascript/jQuery to dynamically create HTML elements by using control flow (conditionals and for-loops)
-9. Cater for edge-cases, and test these using console.log
+9. Cater for edge-cases, and test these in the browser console (if an article doesn't have an image, don't display this article)
 10. Edit your SASS styles to suit dynamically created elements if necessary
 11. Continually save and commit your work in Git (all work on a single commit should be related to one feature/improvement/fix)
 12. Once you've achieved the mandatory functional requirements, clean up your unecessary code, unclear comments, or un-needed console.logs
-13. Check the Project 3 Requirements again to see if you have covered all the mandatory tasks
+13. Check the Project Requirements again to see if you have covered all the mandatory tasks
 14. W3C Validate your HTML and CSS syntax, and fix errors if necessary
 15. Use HTML5 semantic tags to imply meaning and add more importance for SEO and Accessibility
 16. Test your website layout on multiple browsers and devices, and fix if need be
