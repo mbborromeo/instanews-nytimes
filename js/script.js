@@ -1,18 +1,17 @@
+// Wait until DOM has loaded
 document.addEventListener('DOMContentLoaded', function(){
-//$(function() {
-  // Variables
+  // Declare Variables
   const LIMIT = 12;
-  const MY_API_KEY='BvCBQeH2bfwoKZ8Uabwe0ynMvv1yx8VZ'; // better to put key in external file
+  const MY_API_KEY='BvCBQeH2bfwoKZ8Uabwe0ynMvv1yx8VZ'; // in future, put key in external file
 
-  // References
+  // DOM References
   const stories = document.getElementById('stories');  
   const dropdown = document.getElementById('category');
   const header = document.getElementsByTagName('header')[0];  
   const loader = document.getElementById('loader');  
 
-  // Functions
+  // Function Declarations
   function generateThumbs(array){
-    // create new list
     const ul = document.createElement('ul');
 
     for( let i=0; i < array.length; i++ ){
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const h2 = document.createElement('h2');
       h2.innerText = array[i].title;
 
-      figcaption.append(h2); // add title optional
+      figcaption.append(h2); // optional: add title
       figcaption.append( array[i].abstract );     
 
       figure.append(image);
@@ -48,17 +47,17 @@ document.addEventListener('DOMContentLoaded', function(){
   
   // Event Handlers
   dropdown.addEventListener('change', function(event){    
-    // get value that it changed to
+    // get value of dropdown on change
     const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 
-    // Set height for header and stories
+    // set height for header and stories
     header.setAttribute('class', 'shrink');
     stories.setAttribute('class', 'expand');
 
     // show loading graphic
     loader.setAttribute('style', 'display:flex');    
 
-    // Hide previous list before deleting it
+    // hide previous list before deleting it
     if( document.querySelector('ul') ) {
       let existingUL = document.querySelector('ul');
       existingUL.setAttribute('display', 'none');
@@ -100,5 +99,4 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
   
-// }); end document.ready
 }); // end Javascript DOMContentLoaded wrapper
