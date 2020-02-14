@@ -1,5 +1,5 @@
 # instanews-nytimes
-Instanews - NY Times API call
+Mobile-first responsive website calling NY Times API to retrieve latest news articles according to user's selected dropdown category.
 
 # Technologies used
 - Javascript
