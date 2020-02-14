@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //$(function() {
   // Variables
   const LIMIT = 12;
-  const MY_API_KEY='BvCBQeH2bfwoKZ8Uabwe0ynMvv1yx8VZ';
+  const MY_API_KEY='BvCBQeH2bfwoKZ8Uabwe0ynMvv1yx8VZ'; // better to put key in external file
 
   // References
   const stories = document.getElementById('stories');  
@@ -18,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function(){
   stories.append(loader);
 
   // Functions
-  function generateThumbs(array, number){
+  function generateThumbs(array){
     // create new list
     const ul = document.createElement('ul');
 
-    for( let i=0; i < number; i++ ){
+    for( let i=0; i < array.length; i++ ){
       const li = document.createElement('li');
 
       const a = document.createElement('a');
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     stories.append(ul);
   }
-
   
   // Event Handlers
   dropdown.addEventListener('change', function(event){    
@@ -79,33 +78,28 @@ document.addEventListener("DOMContentLoaded", function(){
     // using jQuery ajax method
     $.ajax({
       method: 'GET',
-      url: `https://api.nytimes.com/svc/topstories/v2/${ selectedCategory }.json?api-key=${ MY_API_KEY }` 
-      // better to put key in external file
+      url: `https://api.nytimes.com/svc/topstories/v2/${ selectedCategory }.json?api-key=${ MY_API_KEY }`      
     })
     .done( function(data){
-      if( data.results.length > 0 ){    
-        // console.log(data);
-
-        // filter out articles that don't have images    
-        //const articleWithImagesArray = []; does not work
-        //let articleWithImagesArray = []; works
-        const articleWithImagesArray = data.results.filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url );
+      if( data.results.length > 0 ){
+        // filter out articles that don't have images, and only get the first 12 items
+        //const articleWithImagesArray = []; does not work, but let does
+        const articleWithImagesArray = data.results
+          .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
+          .slice(0, LIMIT);   
 
         // hide loading loop image
         loader.setAttribute('style', 'display:none');
         
-        if( articleWithImagesArray.length > LIMIT ){
-          generateThumbs( articleWithImagesArray, LIMIT );
-        } else {
-          generateThumbs( articleWithImagesArray, articleWithImagesArray.length );
-        }     
-      }      
+        generateThumbs( articleWithImagesArray );
+      } else {
+        stories.innerText = 'No articles returned for category ' + selectedCategory;
+      }
     })
     .fail( function() {
       alert('error with API call');
     });
   });
-  
   
 // }); end document.ready
 }); // end Javascript DOMContentLoaded wrapper
