@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const loader = document.createElement('img');
   loader.setAttribute('id', 'loader');
   loader.setAttribute('src', 'images/ajax-loader.gif');
+  loader.setAttribute('alt', 'Content loading...');
   loader.setAttribute('style', 'display:none');
   stories.append(loader);
 
@@ -33,8 +34,15 @@ document.addEventListener("DOMContentLoaded", function(){
       const image = document.createElement('img');
       image.setAttribute('src', array[i].multimedia[0].url);
 
-      const figcaption = document.createElement('figcaption');
-      figcaption.innerText = array[i].abstract; // can add title as well
+      const figcaption = document.createElement('figcaption');      
+
+      const h2 = document.createElement('h2');
+      h2.innerText = array[i].title;
+
+      // add title as well
+      figcaption.append(h2);
+      //figcaption.innerText = array[i].abstract; 
+      figcaption.append( array[i].abstract );     
 
       figure.append(image);
       figure.append(figcaption);
@@ -76,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
     })
     .done( function(data){
       if( data.results.length > 0 ){    
-        //console.log(data);
+        console.log(data);
 
         // filter out articles that don't have images    
         //const articleWithImagesArray = []; does not work
