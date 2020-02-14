@@ -44,7 +44,6 @@ header {
         align-items: center;
 
         label {
-            display: block;
             padding-bottom: 0.5 * $base-spacing-unit;
         }
 
@@ -238,6 +237,11 @@ footer {
 }
 
 is equivalent to 
+
+#stories ul li {
+    flex: 0 1 100%;
+    max-width: 100%;
+}
 
 @media screen and (min-width: $desktop-width) {
     #stories ul li {
