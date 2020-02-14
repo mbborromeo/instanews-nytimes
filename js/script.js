@@ -13,9 +13,10 @@ document.addEventListener('DOMContentLoaded', function(){
   // Function Declarations
   function buildThumbnails(array){
     const ul = document.createElement('ul');
+    //ul.setAttribute('style','opacity:0');
 
     for( let i=0; i < array.length; i++ ){
-      const li = document.createElement('li');
+      const li = document.createElement('li');      
 
       const a = document.createElement('a');
       a.setAttribute('href', array[i].url);      
@@ -48,6 +49,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // show dynamically generated ul
     stories.append(ul);
+
+    // fade in images
+    //ul.setAttribute('style','opacity:1');
   }
   
   // Event Handlers
