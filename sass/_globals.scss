@@ -1,0 +1,22 @@
+/**
+ * Globals used on every page
+ */
+
+/* use border-box for everything */
+* { 
+	box-sizing: border-box; 
+}
+
+html {       
+    font-size: 100%; /* 16px */
+    background-color: $primary-color;
+    color: $base-font-color;
+}
+
+body {
+    font-family: 'OpenSansLight', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
