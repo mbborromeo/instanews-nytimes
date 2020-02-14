@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener('DOMContentLoaded', function(){
 //$(function() {
   // Variables
   const LIMIT = 12;
@@ -8,14 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const stories = document.getElementById('stories');  
   const dropdown = document.getElementById('category');
   const header = document.getElementsByTagName('header')[0];  
-
-  // Loading graphic
-  const loader = document.createElement('img');
-  loader.setAttribute('id', 'loader');
-  loader.setAttribute('src', 'images/ajax-loader.gif');
-  loader.setAttribute('alt', 'Content loading...');
-  loader.setAttribute('style', 'display:none');
-  stories.append(loader);
+  const loader = document.getElementById('loader');  
 
   // Functions
   function generateThumbs(array){
@@ -39,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
       const h2 = document.createElement('h2');
       h2.innerText = array[i].title;
 
-      // add title as well
-      figcaption.append(h2);
-      //figcaption.innerText = array[i].abstract; 
+      figcaption.append(h2); // add title optional
       figcaption.append( array[i].abstract );     
 
       figure.append(image);
@@ -58,15 +49,14 @@ document.addEventListener("DOMContentLoaded", function(){
   // Event Handlers
   dropdown.addEventListener('change', function(event){    
     // get value that it changed to
-    // $selectedCategory = $(this).children('option:selected').val(); // .text() // $(this).val()
-    const selectedCategory = this.value; // event.srcElement.value
+    const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 
     // Set height for header and stories
     header.setAttribute('class', 'shrink');
     stories.setAttribute('class', 'expand');
 
     // show loading graphic
-    loader.setAttribute('style', 'display:block');
+    loader.setAttribute('style', 'display:flex');    
 
     // Hide previous list before deleting it
     if( document.querySelector('ul') ) {
@@ -78,14 +68,23 @@ document.addEventListener("DOMContentLoaded", function(){
     // using jQuery ajax method
     $.ajax({
       method: 'GET',
-      url: `https://api.nytimes.com/svc/topstories/v2/${ selectedCategory }.json?api-key=${ MY_API_KEY }`      
+      url: `https://api.nytimes.com/svc/topstories/v2/${ selectedCategory }.json?api-key=${ MY_API_KEY }`
+      // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
+      // Proceed only if there are any results
       if( data.results.length > 0 ){
-        // filter out articles that don't have images, and only get the first 12 items
-        //const articleWithImagesArray = []; does not work, but let does
-        const articleWithImagesArray = data.results
+        // Filter out articles that don't have images, and only get the first 12 items
+        const articleWithImagesArray = data.results  // const articleWithImagesArray = [] does not work
           .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
+          // .filter( function(item) { return (item.multimedia && item.multimedia.length && item.multimedia[0].url); } )
+          // .filter( function(item) { 
+          //   if (item.multimedia && item.multimedia.length && item.multimedia[0].url) { 
+          //     return true; 
+          //   } else {
+          //     return false;
+          //   }
+          // })
           .slice(0, LIMIT);   
 
         // hide loading loop image
