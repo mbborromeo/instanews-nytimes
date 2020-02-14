@@ -1,6 +1,15 @@
 # instanews-nytimes
 Instanews - NY Times API call
 
+# Technologies used
+- Javascript
+- jQuery AJAX method
+- NY Times API call
+- HTML5 Semantic tags
+- SASS/CSS3
+- Gulp
+- NPM 
+
 # To install
 npm install
 
@@ -27,7 +36,7 @@ gulp
 16. Test your website layout on multiple browsers and devices, and fix if need be.
 17. Save/commit your work again, and put it aside as a version you can submit.
 18. If you have time, attempt some Stretch Goals from the Project Requirements.
-19. Ensure your README.md file includes technologies used, installation instructions, where you got up to, things still to do/improve on.
+19. Ensure your README.md file includes project description/features, technologies used, installation instructions, things still to do/improve on.
 20. Submit your work before the deadline, and give yourself a pat on the back.
 
 Note: Remember you can always go back and revisit things in your own time, and you will also have a chance to re-submit before the end of the program.  Professional Web/Software companies always release a newer version or an update, so it is a normal part of the process to not get it 100% perfect the first go, and to break things up into stages/releases focusing on mandatory functionality as a priority.  
