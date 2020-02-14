@@ -59,15 +59,14 @@ document.addEventListener('DOMContentLoaded', function(){
     header.setAttribute('class', 'shrink');
     stories.setAttribute('class', 'expand');
 
-    // show loading graphic
-    loader.setAttribute('style', 'display:flex');    
-
-    // hide previous list before deleting it
-    if( document.querySelector('ul') ) {
-      let existingUL = document.querySelector('ul');
-      existingUL.setAttribute('display', 'none');
+    // remove previous list
+    let existingUL = document.querySelector('ul');
+    if( existingUL !== null ) {    
       existingUL.parentNode.removeChild(existingUL);
     }
+
+    // show loading graphic
+    loader.setAttribute('style', 'display:flex');    
     
     // using jQuery ajax method
     $.ajax({
