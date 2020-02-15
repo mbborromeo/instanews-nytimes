@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
   function buildThumbnails(array){
     const ul = document.createElement('ul');
 
+    // array.forEach( function(item, i) { 
+    //    ...
+    // });
     for( let i=0; i < array.length; i++ ){
       const li = document.createElement('li');
 
@@ -52,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function(){
   
   // Event Handlers
   dropdown.addEventListener('change', function(event){    
+    console.log('change dropdown');
+    
     // get value of dropdown on change
     const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 
@@ -75,20 +80,22 @@ document.addEventListener('DOMContentLoaded', function(){
       // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
+      console.log(data)
       // Proceed only if there are any results
       if( data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
-        const articlesWithImagesArray = data.results  // const articlesWithImagesArray = [] does not work
-          .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
-          // .filter( function(item) { return (item.multimedia && item.multimedia.length && item.multimedia[0].url); } )
-          // .filter( function(item) { 
-          //   if (item.multimedia && item.multimedia.length && item.multimedia[0].url) { 
-          //     return true; 
-          //   } else {
-          //     return false;
-          //   }
-          // })
-          .slice(0, LIMIT);   
+        const articlesWithImagesArray = 
+          data.results
+            .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
+            // .filter( function(item) { return (item.multimedia && item.multimedia.length && item.multimedia[0].url); } )
+            // .filter( function(item) { 
+            //   if (item.multimedia && item.multimedia.length && item.multimedia[0].url) { 
+            //     return true; 
+            //   } else {
+            //     return false;
+            //   }
+            // })
+            .slice(0, LIMIT);   
         
         buildThumbnails( articlesWithImagesArray );
       } else {

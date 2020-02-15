@@ -65,7 +65,7 @@
               }
 
               figcaption {
-                  opacity: 0;
+                  opacity: 0.8;
                   background-color: $primary-color;
                   color: $base-font-color;
                   position: absolute;
@@ -77,16 +77,23 @@
                   padding-right: $base-spacing-unit;
                   text-overflow: ellipsis;
                   transition: opacity .5s cubic-bezier(0.25,0.1,0.25,1.0);
+
+                  /* For Desktop only - has hover functionality and pointer fine control */
+                  @media(hover: hover) and (pointer: fine) {
+                    opacity: 0;
+                  }
               }
 
-              &:hover {
-                  figcaption {
-                      opacity: 0.8;
-                  }
+              @media(hover: hover) and (pointer: fine) {
+                &:hover {
+                    figcaption {
+                        opacity: 0.8;
+                    }
 
-                  img {
-                      transform: scale(1.10);
-                  }
+                    img {
+                        transform: scale(1.10);
+                    }
+                }
               }
           }
       }
