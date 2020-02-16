@@ -8,8 +8,8 @@ header {
   justify-content: center;
   align-items: center;  
   
-  padding-top: $base-spacing-unit;
-  padding-bottom: $base-spacing-unit;  
+  padding-top: $base-spacing-unit;  
+  padding-bottom: $base-spacing-unit;
 
   #header-wrapper {
       display: flex;     
@@ -82,7 +82,11 @@ header {
               padding-top: 0;
           }
       }
-  }    
+  }  
+  
+  @include tablet {
+      padding-bottom: 0;
+  }
 
   @include desktop {
       justify-content: left;
