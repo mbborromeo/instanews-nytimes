@@ -35,8 +35,11 @@ document.addEventListener('DOMContentLoaded', function(){
       const h2 = document.createElement('h2');
       h2.innerText = array[i].title;
 
-      figcaption.append(h2); // optional: add title
-      figcaption.append( array[i].abstract );     
+      const paragraph = document.createElement('p');
+      paragraph.innerText = array[i].abstract;
+
+      figcaption.append(h2);
+      figcaption.append(paragraph);     
 
       figure.append(image);
       figure.append(figcaption);
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // Event Handlers
   dropdown.addEventListener('change', function(event){    
     console.log('change dropdown');
-    
+
     // get value of dropdown on change
     const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 

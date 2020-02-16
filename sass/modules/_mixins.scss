@@ -5,8 +5,9 @@
   }
 }
 
+/* Desktop has hover functionality and pointer fine control */
 @mixin desktop {  
-  @media (min-width: $desktop-width) {
+  @media (hover: hover) and (pointer: fine) and (min-width: $desktop-width) {
     @content; // inserts content from where this is called      
   }
 }

@@ -19,10 +19,6 @@
       justify-content: center;
   }
 
-  h2 {
-      font-size: 1em;
-  }
-
   ul {
       margin: 0;
       padding: 0;
@@ -44,8 +40,7 @@
               max-width: 33.33%;
           }
 
-          // @include desktop { OR
-          @media screen and (min-width: $desktop-width) {
+          @include desktop {
               flex: 0 1 25%;
               max-width: 25%;
           }
@@ -78,16 +73,33 @@
                   text-overflow: ellipsis;
                   transition: opacity .5s cubic-bezier(0.25,0.1,0.25,1.0);
 
-                  /* For Desktop only - has hover functionality and pointer fine control */
-                  @media(hover: hover) and (pointer: fine) {
+                  h2 {
+                      font-size: 1em;
+                  }
+
+                  p {
+                      display: none;
+                  }
+
+                  @include desktop {
                     opacity: 0;
                   }
               }
 
-              @media(hover: hover) and (pointer: fine) {
+              @include tablet {
+                figcaption {
+                    p {
+                        display: block;
+                    }
+                }
+              }
+
+              @include desktop {
                 &:hover {
-                    figcaption {
-                        opacity: 0.8;
+                    figcaption { 
+                        p {
+                            display: block;
+                        }
                     }
 
                     img {
