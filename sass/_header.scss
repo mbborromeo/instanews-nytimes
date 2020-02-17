@@ -55,6 +55,7 @@ header {
   #logo {
       width: $logo-width-large;
       height: auto;
+      transition: width .5s linear;
   }
 
   &.shrink {
