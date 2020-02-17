@@ -11,6 +11,7 @@
 #stories {
   min-height: 0;
   display: none;
+  background-color: #111;
 
   &.expand {
       min-height: 80%;        

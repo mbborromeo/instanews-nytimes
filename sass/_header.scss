@@ -2,7 +2,8 @@
  * Header
  */
 header {
-  min-height: 90%;
+  min-height: 90%;  
+  transition: min-height .5s linear;
   display: flex;
   flex-direction: row;
   justify-content: center;
