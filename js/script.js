@@ -10,33 +10,36 @@ document.addEventListener('DOMContentLoaded', function(){
   const header = document.getElementsByTagName('header')[0];  
   const loader = document.getElementById('loader');  
 
-  // Function Declarations
+  // Function Declarations  
+  function hideLoader(){
+    loader.setAttribute('style', 'display:none');
+  }
+
   function buildThumbnails(array){
     const ul = document.createElement('ul');
 
-    // array.forEach( function(item, i) { 
-    //    ...
-    // });
-    for( let i=0; i < array.length; i++ ){
+    //for( let i=0; i < array.length; i++ ){
+    array.forEach( (item, i) => { 
       const li = document.createElement('li');
 
       const a = document.createElement('a');
-      a.setAttribute('href', array[i].url);      
+      a.setAttribute('href', item.url);      
       a.setAttribute('target', '_blank');
 
       const figure = document.createElement('figure');
 
       const image = document.createElement('img');
-      image.setAttribute('src', array[i].multimedia[0].url);
+      image.setAttribute('src', item.multimedia[0].url);
       image.setAttribute('alt', 'Image '+ i);
+
 
       const figcaption = document.createElement('figcaption');      
 
       const h2 = document.createElement('h2');
-      h2.innerText = array[i].title;
+      h2.innerText = item.title;
 
       const paragraph = document.createElement('p');
-      paragraph.innerText = array[i].abstract;
+      paragraph.innerText = item.abstract;
 
       figcaption.append(h2);
       figcaption.append(paragraph);     
@@ -47,19 +50,17 @@ document.addEventListener('DOMContentLoaded', function(){
       a.append(figure);
       li.append(a);
       ul.append(li);
-    }
+    //}
+    });
 
-    // hide loading loop image
-    loader.setAttribute('style', 'display:none');
+    hideLoader();
 
     // show dynamically generated ul
     stories.append(ul);
   }
   
   // Event Handlers
-  dropdown.addEventListener('change', function(event){    
-    console.log('change dropdown');
-
+  dropdown.addEventListener('change', function(event){
     // get value of dropdown on change
     const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 
@@ -85,28 +86,23 @@ document.addEventListener('DOMContentLoaded', function(){
     .done( function(data){
       console.log(data)
       // Proceed only if there are any results
-      if( data.results.length > 0 ){
+      if( data.status==="OK" && data.results && data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
         const articlesWithImagesArray = 
           data.results
             .filter( item => item.multimedia && item.multimedia.length && item.multimedia[0].url )
-            // .filter( function(item) { return (item.multimedia && item.multimedia.length && item.multimedia[0].url); } )
-            // .filter( function(item) { 
-            //   if (item.multimedia && item.multimedia.length && item.multimedia[0].url) { 
-            //     return true; 
-            //   } else {
-            //     return false;
-            //   }
-            // })
             .slice(0, LIMIT);   
         
         buildThumbnails( articlesWithImagesArray );
       } else {
+        hideLoader();
         stories.innerText = 'No articles returned for category ' + selectedCategory;
       }
     })
     .fail( function() {
       alert('error with API call');
+      hideLoader();
+      stories.innerText = 'Error - failed to load articles for category ' + selectedCategory;
     });
   });
   
