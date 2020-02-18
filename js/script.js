@@ -15,10 +15,61 @@ document.addEventListener('DOMContentLoaded', function(){
     loader.setAttribute('style', 'display:none');
   }
 
+  function checkAllImagesLoaded( listOfImages ){
+    console.log('checkAllImagesLoaded')
+    let allImagesLoaded = true;
+    const builtImages = listOfImages.getElementsByTagName('img');
+    console.log('builtImages', builtImages)
+
+    //builtImages.forEach( (image, i) => {
+    for( let i=0; i < builtImages.length; i++ ){
+      console.log('image', i)
+      if( builtImages[i].hasAttribute('data-loaded')!==true ){ // && image.getAttribute('data-loaded')!=='true'
+        console.log('image not loaded', i)
+        allImagesLoaded = false;
+        return false; // return false, exit for-loop
+      } else {
+        console.log('image loaded', i)
+      }
+    }
+    //});
+
+    return allImagesLoaded;
+  }
+
+  function fadeInImages() {
+    // lookup all list items
+    // const $allLis = $("#image-list li");
+    const builtUL = document.getElementsByTagName('ul')[0]; // this.parentNode.parentNode.parentNode
+    console.log('builtUL', builtUL)
+    // const builtListItems = builtUL.getElementsByTagName('li');
+    // console.log('builtImages', builtListItems)
+  
+    // if all images have loaded, fade-in images in sequential order
+    // opacity of .image-wrapper is set to 0 initially in CSS file
+    if( checkAllImagesLoaded(builtUL) ){
+      console.log('show images')
+      // $("body").css("background", "none");
+  
+      // stagger fade in images
+      /*
+      builtListItems.forEach( (item, i) => {
+        // $(item).delay( i * 150 ).animate( {opacity: 1}, 250 );
+        item.setAttribute('style', 'opacity:1');
+      });
+      */
+
+      // fade in ul
+      hideLoader();
+      //builtUL.setAttribute('style', 'display:flex; opacity:1;');
+      //builtUL.setAttribute('class', 'show');
+      builtUL.classList.add('show');
+    }
+  }
+  
   function buildThumbnails(array){
     const ul = document.createElement('ul');
 
-    //for( let i=0; i < array.length; i++ ){
     array.forEach( (item, i) => { 
       const li = document.createElement('li');
 
@@ -29,9 +80,15 @@ document.addEventListener('DOMContentLoaded', function(){
       const figure = document.createElement('figure');
 
       const image = document.createElement('img');
-      image.setAttribute('src', item.multimedia[0].url);
       image.setAttribute('alt', 'Image '+ i);
+      image.setAttribute('src', item.multimedia[0].url);
+      image.onload = function(){
+        // set flag to loaded for this image
+        console.log('image has loaded!', i);
+        this.setAttribute('data-loaded', 'true');
 
+        fadeInImages();
+      };
 
       const figcaption = document.createElement('figcaption');      
 
@@ -50,12 +107,9 @@ document.addEventListener('DOMContentLoaded', function(){
       a.append(figure);
       li.append(a);
       ul.append(li);
-    //}
     });
 
-    hideLoader();
-
-    // show dynamically generated ul
+    // append dynamically generated ul to DOM
     stories.append(ul);
   }
   
@@ -84,9 +138,8 @@ document.addEventListener('DOMContentLoaded', function(){
       // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
-      console.log(data)
       // Proceed only if there are any results
-      if( data.status==="OK" && data.results && data.results.length > 0 ){
+      if( data.status==='OK' && data.results && data.results.length > 0 ){
         // Filter out articles that don't have images, and only get the first 12 items
         const articlesWithImagesArray = 
           data.results
@@ -100,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     })
     .fail( function() {
-      alert('error with API call');
       hideLoader();
       stories.innerText = 'Error - failed to load articles for category ' + selectedCategory;
     });
