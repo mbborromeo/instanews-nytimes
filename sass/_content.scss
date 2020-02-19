@@ -11,13 +11,24 @@
 #stories {
   min-height: 0;
   display: none;
-  background-color: #111;
+  background-color: #333;
 
   &.expand {
       min-height: 80%;        
-      display: flex;
-      align-items: center;
+      display: flex;            
       justify-content: center;
+      align-items: flex-start;
+  }
+
+  &.loading {
+      /*
+      background-image: url('/images/ajax-loader.gif');
+      background-repeat: no-repeat;
+      background-size: 50px 50px;
+      background-position-x: 50%;
+      background-position-y: 50%;
+      */
+      align-items: center;
   }
 
   ul {
@@ -25,10 +36,11 @@
       padding: 0;
       list-style: none;
 
-      display: none;
+      display: none; /* flex */
       flex-wrap: wrap;
+      align-items: flex-start;
+
       opacity: 0;
-      transition: opacity 1s linear;
 
       &.show {
         display: flex;
@@ -37,11 +49,19 @@
 
       li {
           margin: 0;
-          padding: 0;
-          overflow: hidden;
+          padding: 0;          
 
           flex: 0 1 100%;
           max-width: 100%;
+          height: min-content;
+          overflow: hidden;
+
+          opacity: 0;
+          transition: opacity .25s linear;
+
+          &.show {
+              opacity: 1;
+          }
 
           @include tablet {
               flex: 0 1 33.33%;
@@ -56,6 +76,7 @@
           figure {
               position: relative;
               margin: 0;
+              overflow: hidden;
 
               img {
                   display: block;
@@ -78,6 +99,7 @@
                   height: 50%;
                   padding-left: $base-spacing-unit;
                   padding-right: $base-spacing-unit;
+                  overflow: hidden;
                   text-overflow: ellipsis;
                   transition: opacity .5s cubic-bezier(0.25,0.1,0.25,1.0);
 
@@ -87,6 +109,7 @@
 
                   p {
                       display: none;
+                      text-overflow: ellipsis;
                   }
 
                   @include desktop {

@@ -12,58 +12,50 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Function Declarations  
   function hideLoader(){
+    stories.classList.remove('loading');
     loader.setAttribute('style', 'display:none');
   }
 
+  function showLoader() {
+    stories.classList.add('loading');
+    loader.setAttribute('style', 'display:flex');  
+  }
+
   function checkAllImagesLoaded( listOfImages ){
-    console.log('checkAllImagesLoaded')
     let allImagesLoaded = true;
     const builtImages = listOfImages.getElementsByTagName('img');
-    console.log('builtImages', builtImages)
 
-    //builtImages.forEach( (image, i) => {
     for( let i=0; i < builtImages.length; i++ ){
-      console.log('image', i)
       if( builtImages[i].hasAttribute('data-loaded')!==true ){ // && image.getAttribute('data-loaded')!=='true'
-        console.log('image not loaded', i)
+        //console.log('image not loaded', i)
         allImagesLoaded = false;
         return false; // return false, exit for-loop
-      } else {
-        console.log('image loaded', i)
       }
     }
-    //});
 
     return allImagesLoaded;
   }
 
   function fadeInImages() {
     // lookup all list items
-    // const $allLis = $("#image-list li");
     const builtUL = document.getElementsByTagName('ul')[0]; // this.parentNode.parentNode.parentNode
-    console.log('builtUL', builtUL)
-    // const builtListItems = builtUL.getElementsByTagName('li');
-    // console.log('builtImages', builtListItems)
-  
-    // if all images have loaded, fade-in images in sequential order
-    // opacity of .image-wrapper is set to 0 initially in CSS file
+    
     if( checkAllImagesLoaded(builtUL) ){
-      console.log('show images')
-      // $("body").css("background", "none");
-  
-      // stagger fade in images
-      /*
-      builtListItems.forEach( (item, i) => {
-        // $(item).delay( i * 150 ).animate( {opacity: 1}, 250 );
-        item.setAttribute('style', 'opacity:1');
-      });
-      */
-
-      // fade in ul
       hideLoader();
-      //builtUL.setAttribute('style', 'display:flex; opacity:1;');
-      //builtUL.setAttribute('class', 'show');
+
+      // show ul
       builtUL.classList.add('show');
+  
+      // fade in images
+      const builtListItems = builtUL.getElementsByTagName('li');
+      for( let i=0; i < builtListItems.length; i++ ){  
+        // $(item).delay( i * 150 ).animate( {opacity: 1}, 250 );
+        setTimeout( function(){
+            builtListItems[i].classList.add('show');
+          }, 
+          i * 150 
+        );        
+      }
     }
   }
   
@@ -83,10 +75,8 @@ document.addEventListener('DOMContentLoaded', function(){
       image.setAttribute('alt', 'Image '+ i);
       image.setAttribute('src', item.multimedia[0].url);
       image.onload = function(){
-        // set flag to loaded for this image
-        console.log('image has loaded!', i);
+        //console.log('image has loaded!', i);
         this.setAttribute('data-loaded', 'true');
-
         fadeInImages();
       };
 
@@ -119,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const selectedCategory = this.value; // event.srcElement.value, $(this).children('option:selected').val(), .text()
 
     // set height for header and stories
-    header.setAttribute('class', 'shrink');
-    stories.setAttribute('class', 'expand');
+    header.classList.add('shrink');
+    stories.classList.add('expand');
 
     // remove previous list
     let existingUL = document.querySelector('ul');
@@ -128,8 +118,8 @@ document.addEventListener('DOMContentLoaded', function(){
       existingUL.parentNode.removeChild(existingUL);
     }
 
-    // show loading graphic
-    loader.setAttribute('style', 'display:flex');    
+    // show loading graphic 
+    showLoader();
     
     // using jQuery ajax method
     $.ajax({
