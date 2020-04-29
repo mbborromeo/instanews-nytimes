@@ -1,6 +1,9 @@
 # instanews-nytimes
 Mobile-first responsive website calling NY Times API to retrieve latest news articles according to user's selected dropdown category.
 
+Live URL:
+https://mbborromeo.github.io/instanews-nytimes/
+
 # Technologies used
 - Javascript
 - jQuery AJAX method
@@ -17,7 +20,6 @@ npm install
 gulp
 
 # Development steps/process
-0. Read & understand the Project Requirements (https://red-wdp.herokuapp.com/project/project-03/)
 1. Set up project in NPM and ensure a package.json file is created
 2. Set up Git source management including .gitignore and README.md files
 3. Install Gulp so SASS can compile
@@ -38,5 +40,3 @@ gulp
 18. If you have time, attempt some Stretch Goals from the Project Requirements
 19. Ensure your README.md file includes project description/features, technologies used, installation instructions, things still to do/improve on
 20. Submit your work before the deadline
-
-Note: Remember you can always go back and revisit things in your own time, and you will also have a chance to re-submit before the end of the program.  Professional Web/Software companies always release a newer version or an update, so it is a normal part of the process to not get it 100% perfect the first go, and to break things up into stages/releases focusing on mandatory functionality as a priority.  
