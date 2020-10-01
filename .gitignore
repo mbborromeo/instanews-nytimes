@@ -2,7 +2,7 @@
 node_modules
 
 # CSS unused folder
-css
+/css
 
 # Source design mockups
 mockups
