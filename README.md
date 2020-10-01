@@ -1,5 +1,5 @@
 # instanews-nytimes
-Mobile-first responsive website calling NY Times API to retrieve latest news articles according to user's selected dropdown category.
+Demo project at Red Academy, while teaching Javascript, jQuery and SASS/CSS.  Mobile-first responsive website calling NY Times API to retrieve latest news articles according to user's selected dropdown category.
 
 # Live website
 https://mbborromeo.github.io/instanews-nytimes
