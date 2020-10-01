@@ -11,7 +11,7 @@
 #stories {
   min-height: 0;
   display: none;
-  background-color: #111;
+  background-color: #222;
 
   &.expand {
       min-height: 80%;        
@@ -90,7 +90,7 @@
 
               figcaption {
                   opacity: 0.8;
-                  background-color: $primary-color;
+                  background-color: #333;
                   color: $base-font-color;
                   position: absolute;
                   z-index: 2;
