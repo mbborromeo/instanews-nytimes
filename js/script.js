@@ -27,9 +27,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     for( let i=0; i < builtImages.length; i++ ){
       if( builtImages[i].hasAttribute('data-loaded')!==true ){ // && image.getAttribute('data-loaded')!=='true'
-        //console.log('image not loaded', i)
         allImagesLoaded = false;
-        return false; // return false, exit for-loop
+        return false; // exit for-loop
       }
     }
 
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function(){
       image.setAttribute('alt', 'Image '+ i);
       image.setAttribute('src', item.multimedia[0].url);
       image.onload = function(){
-        //console.log('image has loaded!', i);
         this.setAttribute('data-loaded', 'true');
         fadeInImages();
       };
@@ -125,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function(){
     $.ajax({
       method: 'GET',
       url: `https://api.nytimes.com/svc/topstories/v2/${ selectedCategory }.json?api-key=${ MY_API_KEY }`
-      // url: 'https://api.nytimes.com/svc/topstories/v2/'+ selectedCategory +'.json?api-key='+ MY_API_KEY
     })
     .done( function(data){
       // Proceed only if there are any results
