@@ -2,14 +2,18 @@
  * Footer
  */
 footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;  
+  /* text-align: center; */
+  justify-content: center;
+  align-items: center;
   min-height: 10%;
   color: $medium-grey;
-  padding-top: 2 * $base-spacing-unit;
   padding-left: 0;
-  text-align: center;    
+  font-size: 0.75em;
   
-  @include desktop {
-      padding-left: 2 * $base-spacing-unit;
-      text-align: left;
+  span {
+    flex: 0 1 auto;
   }
 }

@@ -22,7 +22,6 @@ header {
       }
 
       span {
-
           &.left {
               padding-bottom: $base-spacing-unit;
           }
@@ -30,25 +29,17 @@ header {
           &.right {
               display: flex;
               flex-direction: column;
-              justify-content: center;
-              padding-bottom: $base-spacing-unit;
-
-              @include tablet {
-                  padding-left: 2 * $base-spacing-unit;
-              }
+              justify-content: center;              
               
-              @include desktop {
-                  padding-left: 5 * $base-spacing-unit;
+              @include tablet {
+                padding-bottom: $base-spacing-unit;
+                padding-left: 2 * $base-spacing-unit;
               }
           }
       }
 
       @include tablet {            
           flex-direction: row;
-      }
-
-      @include desktop {
-          padding-left: 2 * $base-spacing-unit;
       }
   }
 
@@ -60,37 +51,31 @@ header {
 
   &.shrink {
       min-height: 10%;
-
+      
       #header-wrapper {
-          flex-direction: column;
+        flex-direction: row;
 
-          @include tablet {
-              flex-direction: row;
-              
-              span {
-                  &.right {
-                      padding-left: 5 * $base-spacing-unit;
-                  }
-              } 
-          }           
-      }
-
-      #logo {
-          width: $logo-width-medium;
-          padding-top: $base-spacing-unit;
-
-          @include tablet {
-              width: $logo-width-small;
-              padding-top: 0;
+        span {
+          &.left {
+            padding-bottom: 0;
           }
+
+          &.right {
+            padding-bottom: 0;
+            padding-left: 2 * $base-spacing-unit;
+          }
+        }
+      }
+      
+      #logo {
+          width: $logo-width-small;
+          padding-top: 0;
       }
   }  
   
   @include tablet {
-      padding-bottom: 0;
-  }
-
-  @include desktop {
-      justify-content: left;
+      #header-wrapper {
+        flex-direction: row;            
+      }
   }
 }
