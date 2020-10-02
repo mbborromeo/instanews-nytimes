@@ -38,3 +38,7 @@ gulp
 15. Use HTML5 semantic tags to imply meaning and add more importance for SEO and Accessibility
 16. Add improvements, fix any bugs, add extra functionality
 17. Ensure your README.md file includes project description/features, technologies used, installation instructions, things still to do/improve on
+
+# To Do
+- possibly pin header to top
+- on mobile landscape view, make image/article take up full-width
